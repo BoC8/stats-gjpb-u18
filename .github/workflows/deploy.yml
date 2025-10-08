@@ -1,0 +1,38 @@
+name: Deploy PHP site to InfinityFree
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create config.php
+        run: |
+          cat > config.php << 'EOF'
+          <?php
+          $DB_HOST = getenv('DB_HOST');
+          $DB_NAME = getenv('DB_NAME');
+          $DB_USER = getenv('DB_USER');
+          $DB_PASS = getenv('DB_PASS');
+          EOF
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+
+      - name: Deploy to InfinityFree via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: ${{ secrets.FTP_DIR }}
+          local-dir: .
+          protocol: ftps
+          log-level: standard
