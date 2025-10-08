@@ -38,7 +38,7 @@ jobs:
           username:   ${{ secrets.FTP_USER }}   # ex: epiz_40124187 (⚠ pas l’utilisateur MySQL)
           password:   ${{ secrets.FTP_PASS }}
           server-dir: ${{ secrets.FTP_DIR }}    # /htdocs/
-          local-dir:  .
+          local-dir:  ./
           protocol:   ftp                      # <-- évite le handshake FTPS qui bloque souvent
           port:       21
           log-level:  verbose
