@@ -187,7 +187,7 @@
       </div>
     </details>
 
-    <a class="right" href="/pages/login.html">Connexion</a>
+    <a class="right" href="/pages/login.php">Connexion</a>
   </nav>
 </header>
 
