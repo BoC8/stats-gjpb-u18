@@ -41,6 +41,7 @@ jobs:
           protocol:   ftp                       # plus tolérant avec InfinityFree
           port:       21
           log-level:  verbose
+          dangerous-clean-slate: true
           exclude: |
             **/.git*/
             **/.github/**
