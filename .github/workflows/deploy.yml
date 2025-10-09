@@ -36,7 +36,7 @@ jobs:
           server:     ${{ secrets.FTP_HOST }}   # ex: ftpupload.net
           username:   ${{ secrets.FTP_USER }}   # ex: epiz_XXXXXXXX
           password:   ${{ secrets.FTP_PASS }}
-          server-dir: /htdocs/                       # laisse commenté si ta session ouvre déjà /htdocs
+          #server-dir: /htdocs/                       # laisse commenté si ta session ouvre déjà /htdocs
           local-dir:  ./                        # doit finir par /
           protocol:   ftp                       # plus tolérant avec InfinityFree
           port:       21
