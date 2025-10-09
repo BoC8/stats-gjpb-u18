@@ -1,0 +1,36 @@
+:root {
+  --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --line:#1f2937; --accent:#06b6d4;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#0b1020,#0f172a); color:var(--text); }
+
+.topbar { position:sticky; top:0; background:#0b1220; border-bottom:1px solid var(--line); z-index:10; }
+.nav { max-width:1100px; margin:0 auto; padding:10px 16px; display:flex; gap:14px; align-items:center; }
+.brand { color:#e5e7eb; text-decoration:none; font-weight:700; }
+.nav a { color:#e5e7eb; text-decoration:none; }
+.nav a:hover { color:#9ae6f0; }
+
+/* Dropdown avec <details> */
+.dropdown { position:relative; }
+.dropdown > summary { list-style:none; cursor:pointer; padding:6px 10px; border:1px solid var(--line); border-radius:10px; }
+.dropdown[open] > summary { background:#0b1220; }
+.dropdown .menu { position:absolute; top:110%; left:0; background:#0b1220; border:1px solid var(--line); border-radius:12px; padding:8px; display:flex; flex-direction:column; min-width:160px; }
+.dropdown .menu a { padding:8px 10px; border-radius:8px; }
+.dropdown .menu a:hover { background:#111827; }
+
+.right { margin-left:auto; padding:6px 10px; border:1px solid var(--line); border-radius:10px; }
+.right:hover { background:#111827; }
+
+.wrap { max-width:1100px; margin:28px auto; padding:0 16px; }
+h1 { margin:0 0 10px; font-size:28px; }
+.muted { color:var(--muted); margin:0 0 18px; }
+
+.cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.card { display:block; padding:18px; background:linear-gradient(180deg,#0b1020,#0f172a); border:1px solid var(--line); border-radius:16px; text-decoration:none; color:var(--text); box-shadow:0 10px 20px rgba(0,0,0,.25); transition:transform .12s ease, border-color .12s ease; }
+.card:hover { transform:translateY(-2px); border-color:var(--accent); }
+.card h3 { margin:0 0 6px; }
+.card p { margin:0; color:var(--muted); }
+
+.foot { text-align:center; color:var(--muted); padding:16px; border-top:1px solid var(--line); }
+
+@media (max-width:900px){ .cards { grid-template-columns:1fr; } }
