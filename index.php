@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stats GJPB</title>
-    <link rel="apple-touch-icon" href="logo-gjpb.png">
+    <link rel="apple-touch-icon" href="pages/logo-gjpb.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1042,7 +1042,7 @@
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo" aria-label="Accueil du club de foot jeunesse">
-                <img src="logo-gjpb.png" alt="Logo GJPB">
+                <img src="pages/logo-gjpb.png" alt="Logo GJPB">
             </a>
 
             <nav class="nav-desktop" aria-label="Navigation principale">
@@ -1581,12 +1581,12 @@
 
         // === DIAPORAMA HERO ===
         const HERO_SLIDES = [
-            'PHOTO-2025-10-29-18-03-13.jpg',
-            'PHOTO-2025-10-29-18-03-14_1.jpg',
-            'PHOTO-2025-10-29-18-03-14.jpg',
-            'PHOTO-2025-10-29-18-03-15_1.jpg',
-            'PHOTO-2025-10-29-18-03-15.jpg',
-            'PHOTO-2025-10-29-18-10-52.jpg'
+            'pages/PHOTO-2025-10-29-18-03-13.jpg',
+            'pages/PHOTO-2025-10-29-18-03-14_1.jpg',
+            'pages/PHOTO-2025-10-29-18-03-14.jpg',
+            'pages/PHOTO-2025-10-29-18-03-15_1.jpg',
+            'pages/PHOTO-2025-10-29-18-03-15.jpg',
+            'pages/PHOTO-2025-10-29-18-10-52.jpg'
         ];
 
         // Préchargement des images pour éviter les flashs
