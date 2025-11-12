@@ -16,10 +16,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # Génère config.php avec tes secrets (pas de getenv côté serveur)
-      - name: Create config.php (bake secrets)
-        shell: bash
+      # (Debug) Voir ce qui va être déployé
+      - name: Show repo content
+        run: |
+          pwd
+          echo "---- depth 2 ----"
+          find . -maxdepth 2 -type f | sort
+
+      # Crée le fichier admin (email + hash) depuis les Secrets GitHub
+      - name: Create admin config
+        run: |
+          mkdir -p pages
+          cat > pages/config_admin.php <<'PHP'
+          <?php
+          $ADMIN_EMAIL = '${{ secrets.ADMIN_EMAIL }}';
+          $ADMIN_HASH  = '${{ secrets.ADMIN_HASH }}';
+          PHP
+
+      # Crée le fichier de config MySQL (si tu utilises la DB)
+      - name: Create DB config
         run: |
           cat > config.php <<'PHP'
           <?php
@@ -27,24 +45,28 @@ jobs:
           $DB_NAME = '${{ secrets.DB_NAME }}';
           $DB_USER = '${{ secrets.DB_USER }}';
           $DB_PASS = '${{ secrets.DB_PASS }}';
+          $DB_PORT = 3306;
           PHP
 
       # Déploiement FTP vers InfinityFree
       - name: Deploy to InfinityFree via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server:     ${{ secrets.FTP_HOST }}   # ex: ftpupload.net
-          username:   ${{ secrets.FTP_USER }}   # ex: epiz_XXXXXXXX
+          server:     ${{ secrets.FTP_HOST }}      # ex: ftpupload.net
+          username:   ${{ secrets.FTP_USER }}      # ex: epiz_XXXXXXXX
           password:   ${{ secrets.FTP_PASS }}
-          #server-dir: /htdocs/                       # laisse commenté si ta session ouvre déjà /htdocs
-          local-dir:  ./                        # doit finir par /
-          protocol:   ftp                       # plus tolérant avec InfinityFree
+          server-dir: /htdocs/                     # cible explicite (IMPORTANT)
+          local-dir:  ./                           # doit finir par /
+          protocol:   ftp
           port:       21
           log-level:  verbose
-          #dangerous-clean-slate: true
+          # Décommente UNE FOIS que tout est OK pour forcer un miroir exact :
+          # dangerous-clean-slate: true
           exclude: |
             **/.git*/
             **/.github/**
             **/.DS_Store
             **/README.md
             **/LICENSE
+            pages/hash.php
+            pages/diag_login.php
